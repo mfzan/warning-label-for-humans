@@ -25,8 +25,9 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
-    # Only chmod the file itself -- never the /output directory, which is
-    # root-owned and merely writable (chmod on it raises PermissionError).
+    # Chmod the file only -- never the /output directory itself, which is
+    # root-owned and merely writable (chmod on it raises PermissionError
+    # and would fail the run outright).
     os.chmod(OUTPUT_PATH, 0o644)
 
 
